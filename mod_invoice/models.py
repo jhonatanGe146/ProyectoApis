@@ -1,5 +1,5 @@
 from django.db import models
-from mod_user.models import persona
+from accounts.models import persona
 from mod_service.models import producto
 
 

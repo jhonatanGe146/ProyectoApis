@@ -1,9 +1,10 @@
 from rest_framework import status
-from rest_framework.response import Response
+from rest_framework import viewsets
+from .models import tipo_documento, tipo_persona, persona, estado_usuario
+from accounts.serializer import PersonaSerializer, EstadoUsuarioSerializer, TipoDocumentoSerializer, TipoUsuarioSerializer
+
 from rest_framework.decorators import api_view
-
-from accounts.serializer import PersonaSerializer
-
+from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, get_user_model
@@ -11,6 +12,28 @@ from django.contrib.auth import authenticate, get_user_model
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
+
+
+
+
+class UsuarioViewSet(viewsets.ModelViewSet):
+    queryset = persona.objects.all()
+    serializer_class = PersonaSerializer
+
+class TipoDocumentoViewSet(viewsets.ModelViewSet):
+    queryset = tipo_documento.objects.all()
+    serializer_class = TipoDocumentoSerializer
+
+class EstadoUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = estado_usuario.objects.all()
+    serializer_class = EstadoUsuarioSerializer
+
+
+class TipoUsuarioViewSet(viewsets.ModelViewSet):
+    queryset = tipo_persona.objects.all()
+    serializer_class = TipoUsuarioSerializer
+
+
 
 
 User = get_user_model()
@@ -70,3 +93,6 @@ def TestView(request):
 def logout(request):
     request.user.auth_token.delete()
     return Response({"message": "Cierre de sesión exitoso"})
+
+
+

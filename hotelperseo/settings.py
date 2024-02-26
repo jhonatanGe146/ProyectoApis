@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mod_room.apps.ModRoomConfig',
-    'mod_user.apps.ModUserConfig',
     'mod_invoice.apps.ModInvoiceConfig',
     'mod_reservation.apps.ModReservationConfig',
     'mod_inventory.apps.ModInventoryConfig',

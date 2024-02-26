@@ -34,27 +34,44 @@ class CustomUserManager(BaseUserManager):
 
         return self.create_user(email = email, password = password, **extra_fields)
 
-class TipoPersona(models.Model):
-    tipo_persona = models.CharField(max_length=50, unique=True)
+class tipo_persona (models.Model):
+    IDTIPOPERSONA =  models.AutoField(primary_key=True, null=False)
+    TIPO_PERSONA = models.CharField(max_length=50, unique=True)
+    def __str__(self):
+        return self.TIPO_PERSONA
+
+
+class tipo_documento (models.Model):
+    IDTIPODOCUMENTO = models.AutoField(primary_key=True, null=False)
+    TIPO_DOCUMENTO = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
-        return self.tipo_persona
+        return self.TIPO_DOCUMENTO
 
-class TipoDocumento(models.Model):
-    tipo_documento = models.CharField(max_length=50, unique=True)
+class estado_usuario (models.Model):
+    IDESTADO =  models.AutoField(primary_key=True, null=False)
+    ESTADO = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.tipo_documento
+        return self.ESTADO
 
-class Persona(AbstractUser):
-    id_tipoDocumento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE, null = True)
-    numero_documento = models.CharField(max_length=10, primary_key=True)
-    nombre = models.CharField(max_length=70, null = True)
-    apellido = models.CharField(max_length=70, null = True)
-    email = models.EmailField(unique=True)
+class persona(AbstractUser):
+    TIPO_DOCUMENTO_IDTIPODOCUMENTO = models.ForeignKey(tipo_documento,
+     on_delete=models.PROTECT,
+    )
+    NRODOCUMENTO = models.CharField(max_length=10, primary_key=True)
+    NOMBRE = models.CharField(max_length=70)
+    APELLIDO = models.CharField(max_length=70)
+    email = models.EmailField(max_length=100, unique=True)
     username = models.CharField(max_length=45)
-    telefono = models.CharField(max_length=15, null = True)
-    id_tipoPersona = models.ForeignKey(TipoPersona, on_delete=models.CASCADE, null = True)
+    TELEFONO = models.CharField(max_length=15)
+    TIPO_PERSONA_IDTIPOPERSONA = models.ForeignKey(tipo_persona,
+    on_delete=models.PROTECT,)
+    ESTADO_USUARIO_IDESTADO = models.ForeignKey(estado_usuario,
+    on_delete=models.PROTECT)
+
+    def __str__(self):
+        return (f'{self.NRODOCUMENTO}  {self.NOMBRE} --> {self.APELLIDO}')
 
     objects = CustomUserManager()
     USERNAME_FIELD = "email"
