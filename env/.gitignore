@@ -1,0 +1,32 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtualenv
+venv/
+env/
+ENV/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+
+# Static files
+staticfiles/
+
+# macOS
+.DS_Store
+
+# Editor/IDE
+.vscode/
+*.swp
+*.swo
+
+# Dependency directories
+/.idea/
+/.vscode/
