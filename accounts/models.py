@@ -33,7 +33,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Superuser tiene que tener is_superuser en verdadero")
 
         return self.create_user(email = email, password = password, **extra_fields)
-
+    
 class tipo_persona (models.Model):
     IDTIPOPERSONA =  models.AutoField(primary_key=True, null=False)
     TIPO_PERSONA = models.CharField(max_length=50, unique=True)
@@ -57,8 +57,8 @@ class estado_usuario (models.Model):
 
 class persona(AbstractUser):
     TIPO_DOCUMENTO_IDTIPODOCUMENTO = models.ForeignKey(tipo_documento,
-     on_delete=models.PROTECT,
-    )
+                                                       on_delete=models.PROTECT,
+                                                       null=True, blank=True)
     NRODOCUMENTO = models.CharField(max_length=10, primary_key=True)
     NOMBRE = models.CharField(max_length=70)
     APELLIDO = models.CharField(max_length=70)
@@ -66,9 +66,11 @@ class persona(AbstractUser):
     username = models.CharField(max_length=45)
     TELEFONO = models.CharField(max_length=15)
     TIPO_PERSONA_IDTIPOPERSONA = models.ForeignKey(tipo_persona,
-    on_delete=models.PROTECT,)
+                                                    on_delete=models.PROTECT,
+                                                    null=True, blank=True)
     ESTADO_USUARIO_IDESTADO = models.ForeignKey(estado_usuario,
-    on_delete=models.PROTECT)
+                                                on_delete=models.PROTECT,
+                                                null=True, blank=True)
 
     def __str__(self):
         return (f'{self.NRODOCUMENTO}  {self.NOMBRE} --> {self.APELLIDO}')

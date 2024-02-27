@@ -37,7 +37,7 @@ class habitacion(models.Model):
     )
 
     def __str__(self):
-        return self.NROHABITACION
+        return (f'{self.NROHABITACION} || {self.ESTADO_HABITACION_IDESTADOHABITACION}')
 
 class inventario_habitacion (models.Model):
     ID_INVENTARIO_HABITACION =  models.AutoField(primary_key=True, null=False)
