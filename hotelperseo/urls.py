@@ -28,5 +28,6 @@ urlpatterns = [
     path ('invoice/', include('mod_invoice.urls')),
     path ('reservation/', include('mod_reservation.urls')),
     path ('room/', include('mod_room.urls')),
+    path ('service/', include('mod_service.urls')),
     path('', include_docs_urls(title='Api Documentation'))
 ]+static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

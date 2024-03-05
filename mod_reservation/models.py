@@ -8,6 +8,10 @@ class estado_reserva(models.Model):
     IDESTADORESERVA = models.AutoField(primary_key=True, null=False)
     ESTADO_RESERVA = models.CharField(max_length=50, unique=True)
 
+    def __str__(self):
+      return self.ESTADO_RESERVA
+    
+
 class reserva(models.Model):
     IDRESERVA = models.AutoField(primary_key=True, null=False)
     FECHA_RESERVACION = models.DateField(null=False)
