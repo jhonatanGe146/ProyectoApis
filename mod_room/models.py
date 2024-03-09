@@ -1,5 +1,6 @@
 from django.db import models
-from mod_inventory.models import inventario
+from mod_inventory.models import inventario, estado_producto
+
 
 # Create your models here.
 class estado_habitacion(models.Model):
@@ -50,6 +51,11 @@ class inventario_habitacion (models.Model):
         habitacion, 
         on_delete=models.CASCADE,
         )
+    
+    ESTADO_PRODUCTO_IDESTADOPRODUCTO = models.ForeignKey(
+        estado_producto,
+        on_delete=models.PROTECT,
+    )
 
     def __str__(self):
         return (f'{self.HABITACION_NROHABITACION} --> {self.INVENTARIO_IDINVENTARIO}')

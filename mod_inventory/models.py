@@ -19,10 +19,6 @@ class inventario(models.Model):
     IDINVENTARIO =  models.AutoField(primary_key=True, null=False)
     NOMBRE_PRODUCTO = models.CharField(max_length=60)
     DESCRIPCION_PRODUCTO = models.TextField(max_length=300)
-    ESTADO_PRODUCTO_IDESTADOPRODUCTO = models.ForeignKey(
-        estado_producto,
-        on_delete=models.PROTECT,
-    )
     CATEGORIA_IDCATEGORIA= models.ForeignKey(
         categoria_inventario,
         on_delete=models.CASCADE,  
