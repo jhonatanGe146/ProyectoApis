@@ -1,5 +1,5 @@
 from django.db import models
-from accounts.models import persona
+from mod_reservation.models import reserva
 from mod_service.models import producto
 
 
@@ -15,7 +15,7 @@ class factura(models.Model):
     IDFACTURA = models.AutoField(primary_key=True, null=False)
     FECHA_FACTURA = models.DateField(null=False)
     MONTO_TOTAL_RESERVA = models.DecimalField(max_digits=10, decimal_places=2, null=False)
-    PERSONA_NRODOCUMENTO = models.ForeignKey(persona,
+    IDRESERVA = models.ForeignKey(reserva,
     on_delete=models.CASCADE)
 
     def __str__(self):
