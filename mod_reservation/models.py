@@ -46,7 +46,7 @@ class habitacion_reserva(models.Model):
     ID_HABITACION_RESERVA = models.AutoField(primary_key=True, null=False)
     HABITACION_NROHABITACION = models.ForeignKey(
         habitacion, 
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         )
     RESERVA_IDRESERVA = models.ForeignKey(
         reserva, 
